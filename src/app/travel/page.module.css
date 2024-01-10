@@ -1,0 +1,22 @@
+.Container {
+  display: flex;
+  flex-direction: row;
+}
+
+.Sidebar {
+  flex: 0 0 0;
+  min-width: 300px;
+  height: 100vh;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  padding: var(--space-16);
+  background-color: black;
+  font-size: var(--chats-font-size);
+  line-height: var(--chats-line-height);
+}
+
+.Chat {
+  flex: 1;
+  height: 100vh;
+  background-color: white;
+}
