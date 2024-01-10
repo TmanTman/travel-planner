@@ -8,11 +8,16 @@
     "start": "next start",
     "lint": "next lint",
     "ts-lint-commit-hook": "tsc --noEmit --incremental",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "makemigrations": "drizzle-kit generate:pg",
+    "migrate": "tsx src/database/migrate.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.1",
+    "@vercel/postgres": "^0.5.1",
     "clsx": "^2.1.0",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.29.3",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"
@@ -21,10 +26,12 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "drizzle-kit": "^0.20.10",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
+    "tsx": "^4.7.0",
     "typescript": "^5"
   }
 }
