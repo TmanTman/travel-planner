@@ -1,5 +1,5 @@
 {
-  "id": "a21c2035-29ec-410d-a4f4-5f1c1bd7b7e1",
+  "id": "56c53075-b605-4520-a9bf-087c791a9743",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -14,15 +14,21 @@
           "primaryKey": true,
           "notNull": true
         },
+        "user_id": {
+          "name": "user_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
         "title": {
           "name": "title",
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
         },
-        "date": {
-          "name": "date",
-          "type": "date",
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": true
         },
@@ -65,7 +71,7 @@
         },
         "user_id": {
           "name": "user_id",
-          "type": "serial",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": true
         },
@@ -75,9 +81,9 @@
           "primaryKey": false,
           "notNull": true
         },
-        "date": {
-          "name": "date",
-          "type": "date",
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
           "primaryKey": false,
           "notNull": true
         }

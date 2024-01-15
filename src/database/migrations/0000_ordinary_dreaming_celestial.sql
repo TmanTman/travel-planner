@@ -1,15 +1,16 @@
 CREATE TABLE IF NOT EXISTS "message" (
 	"id" serial PRIMARY KEY NOT NULL,
+	"user_id" varchar NOT NULL,
 	"title" varchar(255) NOT NULL,
-	"date" date NOT NULL,
+	"createdAt" timestamp NOT NULL,
 	"topic_id" integer
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "topic" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"user_id" serial NOT NULL,
+	"user_id" varchar NOT NULL,
 	"title" varchar(255) NOT NULL,
-	"date" date NOT NULL
+	"createdAt" timestamp NOT NULL
 );
 --> statement-breakpoint
 DO $$ BEGIN

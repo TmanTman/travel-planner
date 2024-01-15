@@ -1,10 +1,11 @@
-import { db } from "./db";
-import { migrate } from "drizzle-orm/vercel-postgres/migrator";
-import * as dotenv from "dotenv";
-dotenv.config({ path: ".env.local" });
+import { migrate } from "./db";
+
+const MIGRATE_CONFIG = {
+  migrationsFolder: "src/database/migrations",
+};
 
 const migrateScript = async () => {
-  await migrate(db, { migrationsFolder: "src/database/migrations" });
+  await migrate();
 };
 
 migrateScript();

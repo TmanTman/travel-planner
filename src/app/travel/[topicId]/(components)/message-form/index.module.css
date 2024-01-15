@@ -1,0 +1,23 @@
+.Form {
+  margin: var(--space-8);
+}
+
+.Input {
+  max-height: 300px;
+  overflow-y: scroll;
+  /* Calcuate content width by subtracting padding and border */
+  width: calc(100% - 2 * var(--space-4) - 2 * var(--space-2));
+  line-height: var(--input-line-height);
+  font-size: var(--input-font-size);
+  padding: var(--space-4);
+  text-wrap: wrap;
+  resize: vertical;
+  min-height: calc(var(--input-line-height) + 2 * var(--space-4));
+  border-radius: var(--border-radius);
+}
+
+.Submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

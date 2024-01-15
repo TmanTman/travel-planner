@@ -9,5 +9,5 @@ export default authMiddleware({
 
 // Note: This is a pretty blind copy from Clerk docs. Definitely can be optimised.
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api)(.*)"],
 };

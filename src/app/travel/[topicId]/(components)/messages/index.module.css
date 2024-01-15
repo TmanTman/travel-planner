@@ -12,20 +12,6 @@
   flex-direction: column;
 }
 
-.Input {
-  max-height: 300px;
-  overflow-y: scroll;
-  margin: var(--space-8);
-  /* Calcuate content width by subtracting margin, padding and border */
-  width: calc(100% - 2 * var(--space-8) - 2 * var(--space-4) - 2 * var(--space-2));
-  line-height: var(--input-line-height);
-  font-size: var(--input-font-size);
-  padding: var(--space-4);
-  text-wrap: wrap;
-  resize: vertical;
-  min-height: calc(var(--input-line-height) + 2 * var(--space-4));
-  border-radius: var(--border-radius);
-}
 
 .ChatBubble {
   font-size: var(--chat-font-size);
