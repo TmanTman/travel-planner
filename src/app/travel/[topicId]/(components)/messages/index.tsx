@@ -7,10 +7,9 @@ import { MessageForm } from "../message-form";
 
 interface Props {
   topicId: string;
-  className: string;
 }
 
-export default async function Messages({ className, topicId }: Props) {
+export default async function Messages({ topicId }: Props) {
   async function fetchMessages(topicId: number) {
     "use server";
     return db.query.messageTable.findMany({
@@ -23,9 +22,9 @@ export default async function Messages({ className, topicId }: Props) {
     topicId === "new" ? [] : await fetchMessages(parseInt(topicId));
 
   return (
-    <div className={clsx(className, classes.ChatContainer)}>
+    <div className={classes.ChatContainer}>
       <div className={classes.ChatHistory}>
-        {messages.map((message, index) => (
+        {messages.map((message) => (
           <div
             key={message.id}
             className={clsx(

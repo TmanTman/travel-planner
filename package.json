@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "ts-lint-commit-hook": "tsc --noEmit --incremental",
+    "ts-lint-commit-hook": "tsc --noEmit",
     "prepare": "husky install",
     "makemigrations": "drizzle-kit generate:pg",
     "migrate": "tsx src/database/migrate.ts"

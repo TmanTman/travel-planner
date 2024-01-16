@@ -1,9 +1,9 @@
-.Chat {
+.Topic {
   margin-bottom: var(--space-16);
   color: white;
 }
 
-.ActiveTopic[type="div"] {
+.Topic.ActiveTopic {
   color: black;
   background-color: white;
 }
