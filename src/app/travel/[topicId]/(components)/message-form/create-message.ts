@@ -2,6 +2,8 @@
 
 import { db } from "@/database/db";
 import { messageTable, topicTable } from "@/database/schema";
+import { getDatabase } from "firebase-admin/database";
+import { getFirebaseAdminApp } from "@/firebase/get-firebase-admin-app";
 import dayjs from "dayjs";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -10,9 +12,7 @@ const generateRandom = () =>
   [...Array(4)].map(() => Math.random().toString(36)[2]).join("");
 
 export async function createMessage(formData: FormData) {
-  "use server";
-
-  // This function would have executed on the API
+  // Comparison: Traditional API vs NextJS Server-side function call
   // Validation: The serializer would have validated the data, returned 400 response if bad
   // This is probably the role of Zod
   // Zod isn't integrated with the ORM, so checking for valid foreign keys is tricky
@@ -35,10 +35,20 @@ export async function createMessage(formData: FormData) {
     databaseTopicId = parseInt(topicId as string);
   }
 
-  await db.insert(messageTable).values({
-    text: text as string,
-    userId: userId as string,
-    createdAt: created,
+  const insertedMessage = await db
+    .insert(messageTable)
+    .values({
+      text: text as string,
+      userId: userId as string,
+      createdAt: created,
+      topicId: databaseTopicId,
+    })
+    .returning({ id: messageTable.id });
+
+  getFirebaseAdminApp();
+  const firebaseDatabase = getDatabase();
+  const tasksRef = firebaseDatabase.ref("tasks");
+  tasksRef.child(insertedMessage[0].id.toString()).set({
     topicId: databaseTopicId,
   });
 

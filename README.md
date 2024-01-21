@@ -39,6 +39,7 @@ Lessons:
 2. Loading states: I suspect you can simplify file structure if you use client-side loading states. Client side code can have 1 component with loading, error and content. Now you need a parent with all Suspense boundarier, then load state, content state, and error state
 3. Preventing rebuilding and re-renders: Again I suspect you can significantly simplify file structure and not have to think about server vs client components. My file structure to prevent re-renders on the Sidebar is an example
 4. Firebase authention is tricky on NextJS. (1) Hot-reload of server components will re-initialise app (2) In the Firebase console, you seem to have to enable a single auth method (I enabled anonymous), even if you use your own + Firebase auth, to allow Firebase auth to work.
+5. I'd like to switch off further usage of the APIs in case it runs away, but that's not very straightforward. You have to run some script, with who-knows what APIs that has to be enabled, and testing that function on Google Cloud UI is terrible.
 
 Database structure:
 queue: The server has write access to it
