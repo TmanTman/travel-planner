@@ -1,7 +1,6 @@
 import { currentUser } from "@clerk/nextjs";
 import { fetchTopics } from "./actions";
 import { SidebarLinks } from "../sidebar-links";
-import dayjs from "dayjs";
 
 export default async function Sidebar() {
   const user = await currentUser();

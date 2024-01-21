@@ -1,4 +1,3 @@
-import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Suspense } from "react";
 import { HomeAuthButtons } from "./(components)/home-auth-buttons";
 
