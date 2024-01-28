@@ -11,9 +11,10 @@ import { redirect } from "next/navigation";
 const generateRandom = () =>
   [...Array(4)].map(() => Math.random().toString(36)[2]).join("");
 
-// TODO: Convert to env vars
-const TASKS = "tasks";
-const DEV_TASKS = "development-tasks";
+const taskQueue = process.env.TASK_QUEUE;
+if (!taskQueue) {
+  throw Error('Missing env var "TASK_QUEUE"');
+}
 
 export async function createMessage(formData: FormData) {
   // Comparison: Traditional API vs NextJS Server-side function call
@@ -51,10 +52,11 @@ export async function createMessage(formData: FormData) {
 
   getFirebaseAdminApp();
   const firebaseDatabase = getDatabase();
-  const tasksRef = firebaseDatabase.ref(TASKS);
+  const tasksRef = firebaseDatabase.ref(taskQueue);
   tasksRef.child(insertedMessage[0].id.toString()).set({
     topicId: databaseTopicId,
     messageId: insertedMessage[0].id,
+    userId: userId,
   });
 
   revalidatePath(`/travel/${databaseTopicId}`);
