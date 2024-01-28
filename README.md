@@ -66,3 +66,6 @@ lastLoadedMessage: [timeOfLastMessage]
 }
 }
 }
+
+TODO:
+Add Sentry for API errors?
