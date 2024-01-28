@@ -23,10 +23,7 @@ export const MessageReponseObserver = ({
 
   useEffect(() => {
     if (db && auth && auth.user) {
-      const messagesRef = ref(
-        db,
-        `development-messages/${auth.user.id}/${topicId}`
-      );
+      const messagesRef = ref(db, `messages/${auth.user.id}/${topicId}`);
       onValue(messagesRef, (snapshot) => {
         const data = snapshot.val() as string;
         // eslint-disable-next-line no-console
