@@ -11,6 +11,10 @@ import { redirect } from "next/navigation";
 const generateRandom = () =>
   [...Array(4)].map(() => Math.random().toString(36)[2]).join("");
 
+// TODO: Convert to env vars
+const TASKS = "tasks";
+const DEV_TASKS = "development-tasks";
+
 export async function createMessage(formData: FormData) {
   // Comparison: Traditional API vs NextJS Server-side function call
   // Validation: The serializer would have validated the data, returned 400 response if bad
@@ -47,9 +51,10 @@ export async function createMessage(formData: FormData) {
 
   getFirebaseAdminApp();
   const firebaseDatabase = getDatabase();
-  const tasksRef = firebaseDatabase.ref("tasks");
+  const tasksRef = firebaseDatabase.ref(TASKS);
   tasksRef.child(insertedMessage[0].id.toString()).set({
     topicId: databaseTopicId,
+    messageId: insertedMessage[0].id,
   });
 
   revalidatePath(`/travel/${databaseTopicId}`);
