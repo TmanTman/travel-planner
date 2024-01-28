@@ -1,0 +1,1 @@
+ALTER TABLE "message" ALTER COLUMN "title" SET DATA TYPE varchar(5000);
