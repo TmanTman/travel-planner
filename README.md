@@ -69,3 +69,4 @@ lastLoadedMessage: [timeOfLastMessage]
 
 TODO:
 Add Sentry for API errors?
+Automatically scroll down if at bottom of Q&A

@@ -6,6 +6,7 @@ import { currentUser } from "@clerk/nextjs";
 import { MessageForm } from "../message-form";
 import { MessageReponseObserver } from "../message-response-observer";
 import { revalidatePath } from "next/cache";
+import dayjs from "dayjs";
 
 interface Props {
   topicId: string;
@@ -16,6 +17,7 @@ export default async function Messages({ topicId }: Props) {
     "use server";
     return db.query.messageTable.findMany({
       where: (message, { eq }) => eq(message.topicId, topicId),
+      orderBy: (messages, { asc }) => [asc(messages.createdAt)],
     });
   }
 
@@ -28,15 +30,16 @@ export default async function Messages({ topicId }: Props) {
   const messages =
     topicId === "new" ? [] : await fetchMessages(parseInt(topicId));
 
-  const mostRecentMessage = [...messages].sort((a, b) =>
-    b.createdAt.localeCompare(a.createdAt)
-  )?.[0];
+  const mostRecentMessageCreatedAt =
+    messages && messages.length > 0
+      ? dayjs(messages[messages.length - 1].createdAt).toISOString()
+      : undefined;
 
   return (
     <>
       <MessageReponseObserver
         topicId={topicId}
-        mostRecentMessage={mostRecentMessage}
+        mostRecentMessageCreatedAt={mostRecentMessageCreatedAt}
         onUpdate={revalidate}
       />
       <div className={classes.ChatContainer}>
