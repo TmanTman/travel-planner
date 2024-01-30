@@ -2,6 +2,7 @@ import { db } from "@/database/db";
 import { messageTable } from "@/database/schema";
 import dayjs from "dayjs";
 import { asc, eq } from "drizzle-orm";
+import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
@@ -46,12 +47,17 @@ export async function POST(request: Request) {
   const content = params.content;
   const userId = params.userId;
 
-  await db.insert(messageTable).values({
-    createdAt: dayjs().toISOString(), // This should sit on a "serializer". Should be built in
-    topicId,
-    userId,
-    text: content,
-  });
+  const newMessage = (
+    await db
+      .insert(messageTable)
+      .values({
+        createdAt: dayjs().toISOString(), // This should sit on a "serializer". Should be built in
+        topicId,
+        userId,
+        text: content,
+      })
+      .returning()
+  )[0];
 
-  return Response.json({ status: "ok" });
+  return NextResponse.json(newMessage, { status: 200 });
 }
